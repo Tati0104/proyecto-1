@@ -1,0 +1,453 @@
+Ejercicio 10:
+Los precios de impresión de una fotocopiadora se basan normalmente en la cantidad de copias
+que se van a imprimir. Por ejemplo:
+0 - 499 copias $120 por copia
+500 - 749 copias $ 100 por copia
+750 - 999 copias $ 80 por copia
+1000 copias o más $ 50 por copia
+Cree una aplicación que solicite al usuario el número de copias que desea imprimir, se muestra
+el precio por copia y el precio total.
+
+Codigo JavaScript para Node JS
+
+const readline = require('readline');
+
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+rl.question('Ingrese el número de copias que desea imprimir: ', (input) => {
+    let numeroCopias = parseInt(input);
+
+    let precioPorCopia;
+
+    if (numeroCopias >= 0 && numeroCopias <= 499) {
+        precioPorCopia = 120;
+    } else if (numeroCopias >= 500 && numeroCopias <= 749) {
+        precioPorCopia = 100;
+    } else if (numeroCopias >= 750 && numeroCopias <= 999) {
+        precioPorCopia = 80;
+    } else if (numeroCopias >= 1000) {
+        precioPorCopia = 50;
+    } else {
+        console.log("Número de copias no válido.");
+        rl.close();
+        return;
+    }
+
+    let precioTotal = numeroCopias * precioPorCopia;
+
+    console.log("El precio por copia es: $" + precioPorCopia);
+    console.log("El precio total es: $" + precioTotal);
+
+    rl.close();
+});
+
+Ejercicios 11:
+Cree una aplicación de resolución de problemas de computadora que determine el estado de
+la computadora.
+Si emite un pitido al iniciarse y si el disco duro gira, esta averiada. Si emite un pitido y la unidad
+gira, haga que la aplicación muestre “Póngase en contacto con el técnico apoyo”.
+Si emite un pitido y la unidad no gira, haga que la aplicación muestre "Verificar contactos de la
+unidad".
+Si no emite un pitido y el disco duro no gira, haga que la aplicación muestre "Traiga la
+computadora para repararla en la central." Por último, si no emite un pitido y el disco duro
+gira, haga que la aplicación muestre "Compruebe las conexiones de altavoces ".
+
+Codigo JavaScript para Node JS
+
+// Importar el módulo readline para interactuar con el usuario
+const readline = require('readline');
+
+// Configurar la interfaz de entrada y salida
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+// Preguntar al usuario si la computadora emite un pitido
+rl.question('¿La computadora emite un pitido al iniciarse? (si/no): ', (pitido) => {
+    
+    // Convertir la respuesta a minúsculas para evitar errores de mayúsculas/minúsculas
+    pitido = pitido.toLowerCase();
+    
+    // Preguntar al usuario si el disco duro gira
+    rl.question('¿El disco duro gira? (si/no): ', (gira) => {
+        
+        gira = gira.toLowerCase();
+        
+        // Determinar el estado de la computadora basado en las respuestas
+        if (pitido === 'si' && gira === 'si') {
+            console.log("Póngase en contacto con el técnico de apoyo.");
+        } else if (pitido === 'si' && gira === 'no') {
+            console.log("Verificar contactos de la unidad.");
+        } else if (pitido === 'no' && gira === 'no') {
+            console.log("Traiga la computadora para repararla en la central.");
+        } else if (pitido === 'no' && gira === 'si') {
+            console.log("Compruebe las conexiones de altavoces.");
+        } else {
+            console.log("Entrada no válida. Por favor, responda con 'si' o 'no'.");
+        }
+        
+        // Cerrar la interfaz readline
+        rl.close();
+    });
+});
+
+Explicación del Código
+Interfaz readline: Utilizamos el módulo readline para interactuar con el usuario a través de la terminal.
+
+Preguntas al Usuario:
+
+Primero, preguntamos si la computadora emite un pitido al iniciarse.
+Luego, preguntamos si el disco duro gira.
+Condiciones:
+
+Si la computadora emite un pitido y el disco duro gira, mostramos: "Póngase en contacto con el técnico de apoyo."
+Si emite un pitido pero el disco duro no gira, mostramos: "Verificar contactos de la unidad."
+Si no emite un pitido y el disco duro no gira, mostramos: "Traiga la computadora para repararla en la central."
+Si no emite un pitido pero el disco duro gira, mostramos: "Compruebe las conexiones de altavoces."
+Si se ingresa algo que no sea 'si' o 'no', mostramos un mensaje de error.
+
+Ejercicio 12:
+Una empresa automotriz produjo algunos modelos de automóviles para el 2024, que pueden
+ser difíciles de conducir porque las ruedas del automóvil no son exactamente redondas. Se han
+encontrado autos con los números de modelo 119, 179, 189 a 195, 221 y 780 tener este
+defecto. Cree una aplicación que solicite al cliente el número de modelo de su carro para
+averiguar si está defectuoso. Aparece el mensaje "Su automóvil no está defectuoso" si el
+usuario escribió un número de modelo sin defecto; De lo contrario, el mensaje "el automóvil
+esta defectuoso, llevar a garantía”.
+
+// Importar el módulo readline para interactuar con el usuario
+const readline = require('readline');
+
+// Configurar la interfaz de entrada y salida
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+// Array con los números de modelo defectuosos
+const modelosDefectuosos = [119, 179, 189, 190, 191, 192, 193, 194, 195, 221, 780];
+
+// Solicitar al usuario el número de modelo de su automóvil
+rl.question('Ingrese el número de modelo de su automóvil: ', (input) => {
+    const numeroModelo = parseInt(input);
+
+    // Verificar si el número de modelo está en la lista de defectuosos
+    if (modelosDefectuosos.includes(numeroModelo)) {
+        console.log("El automóvil está defectuoso, llevar a garantía.");
+    } else {
+        console.log("Su automóvil no está defectuoso.");
+    }
+
+    // Cerrar la interfaz readline
+    rl.close();
+});
+
+Explicación del Código
+Array modelosDefectuosos: Contiene los números de modelo de los automóviles que tienen el defecto.
+
+Función includes(): Se utiliza para verificar si el número de modelo ingresado por el usuario está en el array modelosDefectuosos. Esta función devuelve true si el número está en el array y false si no lo está.
+
+Interacción con el Usuario:
+
+Se solicita al usuario que ingrese el número de modelo de su automóvil.
+El número ingresado se convierte a un entero utilizando parseInt().
+Condición:
+
+Si el número de modelo está en la lista de defectuosos, se muestra el mensaje "El automóvil está defectuoso, llevar a garantía."
+Si el número de modelo no está en la lista, se muestra "Su automóvil no está defectuoso."
+
+Ejercicio 13:
+Cree una aplicación CeluMovil para el paquete de promoción febrero 2023, solicitando al
+usuario el operador: claro, Tigo o movistar. Cada operador tiene estos servicios: (llamada
+internacional, paquete de datos). Así:
+Tigo: cargo fijo $45000, valor minuto internacional $200, $valor paquete de datos $12000
+Claro: cargo fijo $30000, valor minuto internacional $100, $valor paquete de datos $18000
+Movistar: cargo fijo $40000, valor minuto internacional $250, $valor paquete de datos $8000
+El usuario debe escoger el tipo de operador al que pertenece y la cantidad de minutos
+internacionales consumidos.
+
+// Importar el módulo readline para interactuar con el usuario
+const readline = require('readline');
+
+// Configurar la interfaz de entrada y salida
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+// Objeto que contiene las tarifas para cada operador
+const tarifas = {
+    Tigo: {
+        cargoFijo: 45000,
+        valorMinutoInternacional: 200,
+        valorPaqueteDatos: 12000
+    },
+    Claro: {
+        cargoFijo: 30000,
+        valorMinutoInternacional: 100,
+        valorPaqueteDatos: 18000
+    },
+    Movistar: {
+        cargoFijo: 40000,
+        valorMinutoInternacional: 250,
+        valorPaqueteDatos: 8000
+    }
+};
+
+// Solicitar al usuario que seleccione su operador
+rl.question('Ingrese su operador (Tigo, Claro, Movistar): ', (operador) => {
+    operador = operador.trim().charAt(0).toUpperCase() + operador.trim().slice(1).toLowerCase();
+
+    // Verificar si el operador es válido
+    if (tarifas[operador]) {
+        // Solicitar la cantidad de minutos internacionales consumidos
+        rl.question('Ingrese la cantidad de minutos internacionales consumidos: ', (minutos) => {
+            minutos = parseInt(minutos);
+
+            if (isNaN(minutos) || minutos < 0) {
+                console.log("Por favor, ingrese un número válido de minutos.");
+            } else {
+                // Calcular el costo total
+                const cargoFijo = tarifas[operador].cargoFijo;
+                const costoMinutosInternacionales = minutos * tarifas[operador].valorMinutoInternacional;
+                const valorPaqueteDatos = tarifas[operador].valorPaqueteDatos;
+                const costoTotal = cargoFijo + costoMinutosInternacionales + valorPaqueteDatos;
+
+                // Mostrar el costo total al usuario
+                console.log(`Operador: ${operador}`);
+                console.log(`Cargo fijo: $${cargoFijo}`);
+                console.log(`Costo por ${minutos} minutos internacionales: $${costoMinutosInternacionales}`);
+                console.log(`Costo del paquete de datos: $${valorPaqueteDatos}`);
+                console.log(`Costo total: $${costoTotal}`);
+            }
+
+            // Cerrar la interfaz readline
+            rl.close();
+        });
+    } else {
+        console.log("Operador no válido. Por favor, ingrese 'Tigo', 'Claro' o 'Movistar'.");
+        rl.close();
+    }
+});
+
+Explicación del Código
+Objeto tarifas:
+
+Contiene las tarifas específicas para cada operador, incluyendo cargo fijo, valor por minuto internacional, y el valor del paquete de datos.
+Interacción con el Usuario:
+
+Se solicita al usuario que ingrese su operador. El nombre del operador se normaliza para manejar diferentes formas de ingresar el operador (por ejemplo, tigo, Tigo, TIGO).
+Luego, se pide al usuario que ingrese la cantidad de minutos internacionales consumidos.
+Condiciones y Cálculo:
+
+Se verifica si el operador ingresado es válido.
+Si los minutos ingresados son válidos, se calcula el costo total sumando el cargo fijo, el costo de los minutos internacionales y el costo del paquete de datos.
+Se muestra el costo total al usuario.
+Manejo de Errores:
+
+Si el usuario ingresa un operador no válido o una cantidad de minutos inválida, se le notifica con un mensaje de error.
+
+Ejercicio 14:
+Cree una aplicación SandwichOrder que cree un pedido de sándwich y calcule el valor a pagar
+por el cliente: solicitando al usuario el tamaño (pequeño o grande) y los ingredientes
+adicionales (tocineta, jalapeño, pavo, Queso).
+Un sándwich pequeño cuesta $ 6000 y un sándwich grande cuesta $ 12000. El jalapeño es
+gratis, la tocineta y el pavo $3000 y el queso $2500.
+
+const readline = require('readline');
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+// Precios de los sándwiches
+const precios = {
+  pequeno: 6000,
+  grande: 12000,
+  jalapeno: 0,
+  tocineta: 3000,
+  pavo: 3000,
+  queso: 2500
+};
+
+// Función para calcular el costo total del sándwich
+function calcularCosto(tamano, ingredientes) {
+  let costoTotal = precios[tamano];
+
+  ingredientes.forEach(ingrediente => {
+    costoTotal += precios[ingrediente] || 0;
+  });
+
+  return costoTotal;
+}
+
+// Función para solicitar información del usuario
+function solicitarOrden() {
+  rl.question('Seleccione el tamaño del sándwich (pequeno/grande): ', (tamano) => {
+    tamano = tamano.toLowerCase();
+    
+    if (tamano !== 'pequeno' && tamano !== 'grande') {
+      console.log('Tamaño no válido. Inténtalo de nuevo.');
+      return solicitarOrden();
+    }
+
+    rl.question('Ingrese los ingredientes adicionales separados por comas (tocineta, jalapeno, pavo, queso): ', (ingredientesStr) => {
+      const ingredientes = ingredientesStr.split(',').map(ing => ing.trim().toLowerCase());
+
+      const costoTotal = calcularCosto(tamano, ingredientes);
+
+      console.log(`El costo total de tu sándwich es: $${costoTotal}`);
+
+      rl.close();
+    });
+  });
+}
+
+// Iniciar el proceso de solicitud
+solicitarOrden();
+
+Explicación del código:
+Configuración del módulo readline: Creamos una interfaz de lectura para interactuar con el usuario a través de la consola.
+
+Definición de precios: Creamos un objeto precios que contiene los precios de los sándwiches y los ingredientes adicionales.
+
+Función calcularCosto: Toma el tamaño del sándwich y una lista de ingredientes para calcular el costo total. Recorre la lista de ingredientes y suma el costo de cada uno al costo del tamaño seleccionado.
+
+Función solicitarOrden:
+
+Solicita al usuario que seleccione el tamaño del sándwich.
+Verifica si el tamaño es válido y, de no ser así, solicita nuevamente al usuario que elija un tamaño válido.
+Solicita al usuario que ingrese los ingredientes adicionales separados por comas.
+Llama a la función calcularCosto para obtener el costo total y lo muestra al usuario.
+Iniciar el proceso: Llama a la función solicitarOrden para comenzar la interacción con el usuario.
+
+
+Ejercicio 15:
+Cree una aplicación GameOf21 para simular una versión simplificada del juego "21" contra la
+computadora.
+Se utiliza una baraja con cartas que pueden tener del 1 al 10 y se puede repetir cualquier
+número. El programa comienza repartiendo al usuario dos cartas elegidas al azar y lo mismo lo
+hace para la máquina, pero no lo revela. Luego para los dos jugadores, una carta elegida al
+azar que no se revela hasta que el usuario seleccione A.
+El ganador es el que tiene la puntuación más alta menor o igual a 21. Si una puntuación es
+superior a 21 y la otra tiene 21 o menos, el jugador con 21 o menos es declarado ganador.
+
+const readline = require('readline');
+
+const rl = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout
+});
+
+// Función para obtener un número aleatorio entre min y max (ambos incluidos)
+function obtenerNumeroAleatorio(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// Función para repartir una carta
+function repartirCarta() {
+  return obtenerNumeroAleatorio(1, 10);
+}
+
+// Función para calcular el puntaje
+function calcularPuntaje(cartas) {
+  return cartas.reduce((total, carta) => total + carta, 0);
+}
+
+// Función para imprimir las cartas y el puntaje del usuario
+function mostrarCartasYpuntuacion(nombreJugador, cartas) {
+  console.log(`${nombreJugador} cartas: ${cartas.join(', ')}`);
+  console.log(`${nombreJugador} puntaje: ${calcularPuntaje(cartas)}`);
+}
+
+// Función para determinar el ganador
+function determinarGanador(puntuacionUsuario, puntuacionComputadora) {
+  if (puntuacionUsuario > 21 && puntuacionComputadora > 21) {
+    console.log('Ambos jugadores superaron 21. No hay ganador.');
+  } else if (puntuacionUsuario > 21) {
+    console.log('El usuario superó 21. La computadora gana.');
+  } else if (puntuacionComputadora > 21) {
+    console.log('La computadora superó 21. El usuario gana.');
+  } else if (puntuacionUsuario > puntuacionComputadora) {
+    console.log('El usuario gana.');
+  } else if (puntuacionComputadora > puntuacionUsuario) {
+    console.log('La computadora gana.');
+  } else {
+    console.log('Es un empate.');
+  }
+}
+
+// Función principal para jugar
+function jugar() {
+  // Repartir cartas iniciales al usuario y a la computadora
+  let cartasUsuario = [repartirCarta(), repartirCarta()];
+  let cartasComputadora = [repartirCarta(), repartirCarta()];
+
+  console.log('Cartas iniciales del usuario:');
+  mostrarCartasYpuntuacion('Usuario', cartasUsuario);
+
+  console.log('\nLa computadora ha recibido sus cartas.');
+
+  // Lógica del juego para el usuario
+  function turnoUsuario() {
+    rl.question('¿Deseas tomar otra carta? (s/n): ', (respuesta) => {
+      if (respuesta.toLowerCase() === 's') {
+        cartasUsuario.push(repartirCarta());
+        mostrarCartasYpuntuacion('Usuario', cartasUsuario);
+
+        if (calcularPuntaje(cartasUsuario) > 21) {
+          console.log('El usuario superó 21.');
+          finalizarJuego();
+        } else {
+          turnoUsuario(); // Permitir otra ronda si el usuario no ha excedido 21
+        }
+      } else {
+        finalizarJuego();
+      }
+    });
+  }
+
+  // Finalizar el juego y determinar el ganador
+  function finalizarJuego() {
+    const cartaOcultaComputadora = repartirCarta();
+    cartasComputadora.push(cartaOcultaComputadora);
+    console.log('\nCarta oculta de la computadora revelada.');
+    mostrarCartasYpuntuacion('Computadora', cartasComputadora);
+
+    const puntuacionUsuario = calcularPuntaje(cartasUsuario);
+    const puntuacionComputadora = calcularPuntaje(cartasComputadora);
+
+    determinarGanador(puntuacionUsuario, puntuacionComputadora);
+    rl.close();
+  }
+
+  turnoUsuario(); // Iniciar el turno del usuario
+}
+
+// Iniciar el juego
+jugar();
+
+Explicación del código:
+Configuración del módulo readline: Creamos una interfaz para interactuar con el usuario en la consola.
+
+Función obtenerNumeroAleatorio: Genera un número aleatorio entre 1 y 10, simula el valor de una carta.
+
+Función repartirCarta: Llama a obtenerNumeroAleatorio para obtener una carta aleatoria.
+
+Función calcularPuntaje: Suma los valores de las cartas para calcular el puntaje total de un jugador.
+
+Función mostrarCartasYpuntuacion: Muestra las cartas y el puntaje actual de un jugador.
+
+Función determinarGanador: Compara los puntajes del usuario y la computadora para determinar el ganador según las reglas del juego.
+
+Función jugar:
+
+Reparte cartas iniciales al usuario y a la computadora.
+Llama a la función turnoUsuario para permitir al usuario decidir si quiere más cartas.
+Después de que el usuario decide detenerse, revela la carta oculta de la computadora y determina el ganador.
+Función finalizarJuego: Se ejecuta cuando el usuario decide no recibir más cartas o si su puntuación excede 21. Se revelan las cartas de la computadora y se determina el ganador.
