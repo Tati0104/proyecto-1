@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificar Triángulo</title>
+</head>
+<body>
+    <h1>Verificar si un Triángulo es Válido</h1>
+    <script>
+        let angulo1 = parseInt(prompt("Ingrese el primer ángulo:"));
+        let angulo2 = parseInt(prompt("Ingrese el segundo ángulo:"));
+        let angulo3 = parseInt(prompt("Ingrese el tercer ángulo:"));
+
+        if (angulo1 + angulo2 + angulo3 === 180) {
+            alert("Los ángulos ingresados forman un triángulo válido.");
+        } else {
+            alert("Los ángulos ingresados no forman un triángulo válido.");
+        }
+    </script>
+</body>
+</html>

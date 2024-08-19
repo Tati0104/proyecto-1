@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Valor mensual ayuda de Alcaldía</title>
+</head>
+<body>
+    <h1>Calcula el valor</h1>
+    <script>
+        let genero = prompt("Ingrese su género (M para masculino, F para femenino):").toUpperCase();
+let edad = parseInt(prompt("Ingrese su edad:"));
+
+// Variable para almacenar el monto de la ayuda
+let monto = 0;
+
+// Calcula el monto de la ayuda basado en el género y la edad
+if (genero === "F") {
+    if (edad > 50) {
+        monto = 120000;
+    } else if (edad >= 30 && edad <= 50) {
+        monto = 100000;
+    }
+} else if (genero === "M") {
+    monto = 40000;
+}
+
+// Muestra el monto de la ayuda
+alert("El monto de la ayuda que recibirá es: $" + monto);
+    </script>
+</body>
+</html>
